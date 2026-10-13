@@ -1,6 +1,6 @@
 # irrationality-measure-constants
 
-In this repository, we seek to prove that the with the irrationality measure `μ(·)`, `μ(arctan(1/n)) = 2, ∀ n ∈ N`.<br>
+In this repository, we seek to prove that the with the irrationality measure `μ(·)`, `μ(arctan(q)) = 2, ∀ q ∈ Q`.<br>
 Additionally, we prove that `μ(√(a/b)π) = 2`, where `a/b` is a positive rational.
 
 
