@@ -4,7 +4,7 @@ In this repository, we seek to prove several irrationality measure results. Let 
 We prove that for all positive rationals `a/b`, `μ(arctan(a/b)) = 2` and `μ(√(a/b)π) = 2`.
 
 
-# Reproduce
+# Instructions
 
 Install Lean 4.34.0 using your usual Lean installation method. From this directory run in powershell:
 
