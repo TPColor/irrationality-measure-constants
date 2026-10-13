@@ -10,8 +10,10 @@ import IrrationalityMeasureConstants
 #print axioms LiuJiangZhang.theorem9
 #print axioms ArctanProof.exp_two_I_arctan
 #print axioms ArctanProof.exp_arctan_rational_coordinates
+#print axioms ArctanProof.exp_arctan_rat_coordinates
+#print axioms ArctanProof.arctanOfRationals_of_criterion
 #print axioms ArctanProof.arctanOfUnitFractions_of_criterion
 #print axioms SquareRootOfRationalsProof.exp_sqrt_fraction_pi
 #print axioms SquareRootOfRationalsProof.squareRootOfRationalsTimesPi_of_criterion
-#print axioms arctanOfUnitFractions
+#print axioms arctanOfRationals
 #print axioms squareRootOfRationalsTimesPi

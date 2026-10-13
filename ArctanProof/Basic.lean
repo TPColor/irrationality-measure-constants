@@ -47,7 +47,37 @@ theorem exp_arctan_rational_coordinates (n : ℕ) (hn : 0 < n) :
   field_simp [hnC, hden, hm]
   apply Complex.ext <;> simp [pow_two] <;> ring
 
-/-- The arctangent conclusion under the imaginary-quadratic exponential criterion. -/
+/-- Rational coordinates for the exponential of twice the arctangent of a rational. -/
+theorem exp_arctan_rat_coordinates (r : ℚ) :
+    ImaginaryQuadratic.HasRationalCoordinates 1
+      (Complex.exp (2 * Complex.I * (Real.sqrt (1 : ℝ) : ℂ) *
+        (Real.arctan (r : ℝ) : ℂ))) := by
+  have hden : (1 : ℂ) + (r : ℂ) ^ 2 ≠ 0 := by
+    have h : (0 : ℝ) < 1 + (r : ℝ) ^ 2 := by positivity
+    exact_mod_cast h.ne'
+  refine ⟨(1 - r ^ 2) / (1 + r ^ 2), 2 * r / (1 + r ^ 2), ?_⟩
+  simp only [Real.sqrt_one, Complex.ofReal_one, mul_one]
+  rw [exp_two_I_arctan]
+  push_cast
+  simp only [Real.sqrt_one, Complex.ofReal_one, mul_one]
+  have hm : (1 : ℂ) - (r : ℂ) * Complex.I ≠ 0 := by
+    intro h
+    have hi := congrArg Complex.re h
+    simp at hi
+  field_simp [hden, hm]
+  apply Complex.ext <;> simp [pow_two] <;> ring
+
+/-- The arctangent of every positive rational has measure two under the
+imaginary-quadratic exponential criterion. -/
+theorem arctanOfRationals_of_criterion
+    (criterion : ImaginaryQuadratic.ExponentialCriterion) (r : ℚ) (hr : 0 < r) :
+    irrationalityMeasure (Real.arctan (r : ℝ)) = 2 := by
+  have hx : 0 < Real.arctan (r : ℝ) :=
+    Real.arctan_pos.mpr (by exact_mod_cast hr)
+  apply criterion 1 (by decide) _ hx.ne'
+  simpa only [Nat.cast_one] using exp_arctan_rat_coordinates r
+
+/-- Positive unit fractions are a special case of the exponential criterion. -/
 theorem arctanOfUnitFractions_of_criterion
     (criterion : ImaginaryQuadratic.ExponentialCriterion)
     (n : ℕ) (hn : 0 < n) :
