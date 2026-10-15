@@ -1,19 +1,18 @@
-import IrrationalityMeasureConstants
+import ExternalResults.LiuJiangZhangTheorem9
 
-/-!
-# Axiom dependencies
-
-`LiuJiangZhang.theorem9` is the only custom axiom. Both final theorems take
-`ImaginaryQuadratic.ExponentialCriterion` as an explicit hypothesis.
--/
-
+/-- info: 'LiuJiangZhang.theorem9' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
 #print axioms LiuJiangZhang.theorem9
-#print axioms ArctanProof.exp_two_I_arctan
-#print axioms ArctanProof.exp_arctan_rational_coordinates
-#print axioms ArctanProof.exp_arctan_rat_coordinates
-#print axioms ArctanProof.arctanOfRationals_of_criterion
-#print axioms ArctanProof.arctanOfUnitFractions_of_criterion
-#print axioms SquareRootOfRationalsProof.exp_sqrt_fraction_pi
-#print axioms SquareRootOfRationalsProof.squareRootOfRationalsTimesPi_of_criterion
-#print axioms arctanOfRationals
-#print axioms squareRootOfRationalsTimesPi
+
+/-- info: 'LiuJiangZhang.RepeatedFibres.interpolation' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms LiuJiangZhang.RepeatedFibres.interpolation
+
+/-- info: 'LiuJiangZhang.RepeatedFibres.weighted_curve_inequality' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs (whitespace := lax) in
+#print axioms LiuJiangZhang.RepeatedFibres.weighted_curve_inequality
+
+-- Visible audit output, after the guarded checks above.
+#print axioms LiuJiangZhang.theorem9
+#print axioms LiuJiangZhang.RepeatedFibres.interpolation
+#print axioms LiuJiangZhang.RepeatedFibres.weighted_curve_inequality

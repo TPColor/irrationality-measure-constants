@@ -7,8 +7,7 @@ name = "IrrationalityMeasureConstants"
 globs = [
   "StatementDefinitions",
   "IrrationalityMeasureConstants",
-  "ArctanProof.+",
-  "SquareRootOfRationalsProof.+",
+  "QuadraticFieldCriterion.+",
   "ExternalResults.+"
 ]
 
@@ -16,3 +15,9 @@ globs = [
 name = "mathlib"
 scope = "leanprover-community"
 rev = "v4.34.0"
+
+[[require]]
+name = "log-irrationality-measure"
+git = "https://github.com/jdb19937/log-irrationality-measure.git"
+rev = "09aeeb095cebdce6791e24eff7f16d227edcdcb6"
+subDir = "lean"

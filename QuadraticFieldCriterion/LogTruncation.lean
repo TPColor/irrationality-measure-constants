@@ -1,4 +1,4 @@
-import ArctanProof.WeightedIndices
+import QuadraticFieldCriterion.WeightedIndices
 import Mathlib.Algebra.Order.Floor.Semiring
 import Mathlib.Tactic.Linarith
 

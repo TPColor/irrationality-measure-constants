@@ -2,6 +2,9 @@ import Mathlib.RingTheory.MvPowerSeries.Basic
 import Mathlib.Algebra.MvPolynomial.Eval
 import Mathlib.Basic.Complex.Basic
 import Mathlib.Data.List.OfFn
+import ExternalResults.LiuJiangZhangLogSeries
+import ExternalResults.RepeatedFibres.Interpolation
+import ExternalResults.RepeatedFibres.LogBridge
 
 /-!
 # Liu–Jiang–Zhang, Theorem 9
@@ -14,25 +17,16 @@ coefficient of weight less than `H` expresses surjectivity onto
 the direct sum of coefficient packets. Coefficients outside those packets are
 irrelevant, so targets can be given as unrestricted coefficient functions.
 
-The axiom states separated-weight interpolation with bounded fibre multiplicity.
+The theorem extends the external interpolation proof to bounded fibre multiplicity.
 -/
 
 namespace LiuJiangZhang
-
-/-- The formal series `log(1+t) = ∑_{k≥1} (-1)^(k+1)t^k/k`, independent of
-the transverse variables. Division by zero makes its constant coefficient zero. -/
-noncomputable def logOneAdd (m : ℕ) : MvPowerSeries (Fin (m + 1)) ℂ := by
-  classical
-  exact fun α =>
-    if α = Finsupp.single 0 (α 0) then
-      (-1 : ℂ) ^ (α 0 + 1) / (α 0 : ℂ)
-    else 0
 
 /-- Theorem 9: surjectivity of the substitution on
 weighted polynomial and coefficient spaces. Weight thresholds and the degree
 divisibility are chosen before the centres; the eventual degree threshold can
 depend on the centres. -/
-axiom theorem9
+theorem theorem9
     (m K κ : ℕ) (hm : 1 ≤ m) (hK : 1 ≤ K) (hκ : 1 ≤ κ) (hκK : κ ≤ K)
     (w0 v0 θ : ℚ) (hw0 : 0 < w0) (hv0 : 0 < v0)
     (hθ : 0 < θ) (hθ1 : θ < 1)
@@ -61,6 +55,24 @@ axiom theorem9
                         (Fin.cases
                           (MvPowerSeries.C (y j) * (1 + MvPowerSeries.X 0))
                           (fun i => MvPowerSeries.C (c j i) +
-                            MvPowerSeries.X i.succ + logOneAdd m)) P) = target j α
+                            MvPowerSeries.X i.succ + logOneAdd m)) P) = target j α := by
+  classical
+  clear hK hκ hκK
+  obtain ⟨thresholds, hthresholds⟩ := RepeatedFibres.interpolation m K κ hm
+    w0 v0 θ hw0 hv0 hθ hθ1 hvolume hfibreVolume
+  refine ⟨thresholds, ?_⟩
+  intro w hw hlarge
+  obtain ⟨R, hR, hcentres⟩ := hthresholds w hw hlarge
+  refine ⟨R, hR, ?_⟩
+  intro y c hy hcard hsep
+  obtain ⟨n0, hn0⟩ := hcentres y c hy hcard hsep
+  refine ⟨n0, ?_⟩
+  intro n hn target
+  obtain ⟨P, hP, hjet⟩ := hn0 n hn target
+  refine ⟨P, ?_, ?_⟩
+  · simpa only [RepeatedFibres.weight_eq_explicit] using hP
+  · intro j α hα
+    have h := hjet j α (by simpa only [RepeatedFibres.weight_eq_explicit] using hα)
+    simpa only [RepeatedFibres.formalJet_eq_eval] using h
 
 end LiuJiangZhang

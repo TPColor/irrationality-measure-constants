@@ -1,4 +1,4 @@
-import ArctanProof.ImaginaryQuadratic
+import QuadraticFieldCriterion.ImaginaryQuadratic
 import Mathlib.Analysis.Complex.Basic
 import Mathlib.Tactic.Linarith
 import Mathlib.LinearAlgebra.Matrix.Determinant.Basic

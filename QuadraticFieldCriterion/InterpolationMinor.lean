@@ -1,5 +1,5 @@
-import ArctanProof.NonzeroMinor
-import ArctanProof.WeightedIndices
+import QuadraticFieldCriterion.NonzeroMinor
+import QuadraticFieldCriterion.WeightedIndices
 
 /-! # The interpolation matrix
 

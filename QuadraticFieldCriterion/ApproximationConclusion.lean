@@ -1,4 +1,4 @@
-import ArctanProof.MeasureBounds
+import QuadraticFieldCriterion.MeasureBounds
 import Mathlib.Tactic.FieldSimp
 import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Positivity
