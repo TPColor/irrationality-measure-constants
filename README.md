@@ -21,4 +21,5 @@ The build completed successfully under Lean 4.34.0 in our session. There are no 
 # Credit
 
 Lily Zhang (pink@berkeley.edu), Evan Li (evl012@ucsd.edu).<br>
-We plan to publish a preprint on arXiv once we write up the arguments.
+We received help from GPT-6 Astra to determine implications from `μ(π) = 2` and Liu–Jiang–Zhang's interpolation theorems, as well as to form this repository (since we aren't very familiar with Lean). Still, we both independently derived the quadratic criterion to summarize these findings. We checked the Lean statements, and we are very confident that the formalized statement remains faithful to the original statement to be proven.<br>
+We plan to publish a preprint on arXiv once we fully write up the arguments ourselves.
