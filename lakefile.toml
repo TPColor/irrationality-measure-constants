@@ -1,6 +1,7 @@
 name = "irrationality-measure-constants"
 version = "0.1.0"
 defaultTargets = ["IrrationalityMeasureConstants"]
+weakLeanArgs = ["-j1"]
 
 [[lean_lib]]
 name = "IrrationalityMeasureConstants"

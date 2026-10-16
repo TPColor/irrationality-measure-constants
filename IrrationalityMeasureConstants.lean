@@ -101,14 +101,14 @@ theorem exp_arctan_rat_coordinates (r : ℚ) :
   field_simp [hden, hm]
   apply Complex.ext <;> simp [pow_two] <;> ring
 
-/-- The arctangent of every positive rational has measure two under the
+/-- The arctangent of every nonzero rational has measure two under the
 imaginary-quadratic exponential criterion. -/
 theorem arctanOfRationals_of_criterion
-    (criterion : ImaginaryQuadratic.ExponentialCriterion) (r : ℚ) (hr : 0 < r) :
+    (criterion : ImaginaryQuadratic.ExponentialCriterion) (r : ℚ) (hr : r ≠ 0) :
     irrationalityMeasure (Real.arctan (r : ℝ)) = 2 := by
-  have hx : 0 < Real.arctan (r : ℝ) :=
-    Real.arctan_pos.mpr (by exact_mod_cast hr)
-  apply criterion 1 (by decide) _ hx.ne'
+  have hx : Real.arctan (r : ℝ) ≠ 0 := by
+    simpa only [ne_eq, Real.arctan_eq_zero_iff, Rat.cast_eq_zero] using hr
+  apply criterion 1 (by decide) _ hx
   simpa only [Nat.cast_one] using exp_arctan_rat_coordinates r
 
 /-- Positive unit fractions are a special case of the exponential criterion. -/
@@ -194,9 +194,9 @@ theorem squareRootOfRationalsTimesPi
 
 end SquareRootOfRationalsProof
 
-/-- The irrationality measure of the arctangent of every positive rational is `2`. -/
+/-- The irrationality measure of the arctangent of every nonzero rational is `2`. -/
 theorem arctanOfRationals
-    (r : ℚ) (hr : 0 < r) :
+    (r : ℚ) (hr : r ≠ 0) :
     irrationalityMeasure (Real.arctan (r : ℝ)) = 2 :=
   ArctanProof.arctanOfRationals_of_criterion
     (ImaginaryQuadratic.exponentialCriterion_of_quadraticFieldCriterion QuadraticField.criterion) r hr
